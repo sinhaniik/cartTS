@@ -1,0 +1,40 @@
+.navbar {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	background-color: rgb(211, 248, 211);
+	height: 3rem;
+	margin: auto;
+	position: sticky;
+
+	.hm {
+		margin-left: 3rem;
+		text-decoration: none;
+	}
+
+	.abt {
+		margin-left: 5rem;
+		text-decoration: none;
+	}
+
+	.str {
+		margin-left: 5rem;
+		text-decoration: none;
+	}
+	.btn {
+		height: 3rem;
+		width: 3em;
+		margin-left: 70em;
+		// display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.CI {
+			margin-top: 0.7em;
+		}
+
+		.cir {
+			transform: translate(0%, -125%);
+		}
+	}
+}
