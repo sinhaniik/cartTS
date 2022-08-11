@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import {
+	createContext,
+	ReactNode,
+	SetStateAction,
+	useContext,
+	useState
+} from 'react';
 
 // these are all the function that we wanted
 // to perform certain action
@@ -8,7 +14,8 @@ type ShoppingCartType = {
 	removeItems: (id: number) => void;
 	deleteItems: (id: number) => void;
 };
-//initial value
+
+// initial value
 const ShoppingCartContext = createContext({} as ShoppingCartType);
 
 // custom hook

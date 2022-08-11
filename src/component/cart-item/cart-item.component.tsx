@@ -1,3 +1,4 @@
+import { useShoppingCart } from '../../context/shoppingCartContext';
 import './cart-item.styles.scss';
 
 export type Date = {
@@ -8,7 +9,22 @@ export type Date = {
 };
 
 export const CartItem = ({ id, name, imageUrl, price }: Date) => {
-	let quantity = 0;
+	const { getItems, addItems, removeItems, deleteItems } = useShoppingCart();
+
+	let quantity = getItems(id);
+
+	const onItemHandler = () => {
+		addItems(id);
+	};
+
+	const onRemoveHandler = () => {
+		removeItems(id);
+	};
+
+	const onDelItemsHandler = () => {
+		deleteItems(id);
+	};
+
 	return (
 		<div className='item-container' key={id}>
 			<img src={imageUrl} alt={`${name}`} />
@@ -18,15 +34,17 @@ export const CartItem = ({ id, name, imageUrl, price }: Date) => {
 			</div>
 			<div className='addToCart'>
 				{quantity === 0 ? (
-					<button className='adCart'>+ add to cart</button>
+					<button className='adCart' onClick={onItemHandler}>
+						+ add to cart
+					</button>
 				) : (
 					<div className='btn_container'>
 						<div className='remove'>
-							<button>+</button>
+							<button onClick={onItemHandler}>+</button>
 							<span>{quantity} </span> in the cart
-							<button>-</button>
+							<button onClick={onRemoveHandler}>-</button>
 						</div>
-						<button>remove</button>
+						<button onClick={onDelItemsHandler}>remove</button>
 					</div>
 				)}
 			</div>
