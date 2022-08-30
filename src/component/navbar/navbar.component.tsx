@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import './navbar.styles.scss';
 import { ReactComponent as CartIcon } from '../../assets/cartIcon.svg';
+
+import './navbar.styles.scss';
 
 export const Navbar = () => {
 	return (

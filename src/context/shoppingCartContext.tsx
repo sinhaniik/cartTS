@@ -1,10 +1,4 @@
-import {
-	createContext,
-	ReactNode,
-	SetStateAction,
-	useContext,
-	useState
-} from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 // these are all the function that we wanted
 // to perform certain action
@@ -44,10 +38,13 @@ export const ShoppingCartProvider = ({ children }: childrenProps) => {
 
 	const addItems = (id: number) => {
 		setCartItem((currentItem) => {
+			//if item is not there in cart thn, match their id and create an array
+			//of that new item and add it to the cart
 			if (currentItem.find((item) => item.id === id) == null) {
 				return [...currentItem, { id, quantity: 1 }];
 			} else {
-				currentItem.map((item) => {
+				// and if item is already there, just increment the quntity by 1
+				return currentItem.map((item) => {
 					if (item.id === id) {
 						return { ...item, quantity: item.quantity + 1 };
 					} else {
@@ -63,7 +60,7 @@ export const ShoppingCartProvider = ({ children }: childrenProps) => {
 			if (currentItem.find((item) => item.id === id)?.quantity === 1) {
 				return currentItem.filter((item) => item.id != id);
 			} else {
-				currentItem.map((item) => {
+				return currentItem.map((item) => {
 					if (item.id === id) {
 						return { ...item, quantity: item.quantity - 1 };
 					} else {

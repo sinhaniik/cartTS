@@ -40,9 +40,13 @@ export const CartItem = ({ id, name, imageUrl, price }: Date) => {
 				) : (
 					<div className='btn_container'>
 						<div className='remove'>
-							<button onClick={onItemHandler}>+</button>
+							<button className='plus' onClick={onItemHandler}>
+								+
+							</button>
 							<span>{quantity} </span> in the cart
-							<button onClick={onRemoveHandler}>-</button>
+							<button className='minus' onClick={onRemoveHandler}>
+								-
+							</button>
 						</div>
 						<button onClick={onDelItemsHandler}>remove</button>
 					</div>
