@@ -28,10 +28,12 @@ export const CartItem = ({ id, name, imageUrl, price }: Date) => {
 	return (
 		<div className='item-container' key={id}>
 			<img src={imageUrl} alt={`${name}`} />
+
 			<div className='name-container'>
 				<span className='name'>{name}</span>
 				<span className='price'>${price}</span>
 			</div>
+
 			<div className='addToCart'>
 				{quantity === 0 ? (
 					<button className='adCart' onClick={onItemHandler}>

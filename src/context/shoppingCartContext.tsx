@@ -3,10 +3,16 @@ import { createContext, ReactNode, useContext, useState } from 'react';
 // these are all the function that we wanted
 // to perform certain action
 type ShoppingCartType = {
+	//for opening nd closing cart
+	openCart: () => void;
+	closeCart: () => void;
+	// increse , decrease cart items
 	getItems: (id: number) => number;
 	addItems: (id: number) => void;
 	removeItems: (id: number) => void;
 	deleteItems: (id: number) => void;
+	cartQuantity: number;
+	cartItem: CartItems[];
 };
 
 // initial value
@@ -30,8 +36,16 @@ type CartItems = {
 export const ShoppingCartProvider = ({ children }: childrenProps) => {
 	//storage place for our items
 	const [cartItem, setCartItem] = useState<CartItems[]>([]);
+	const [isOpen, setIsOpen] = useState(false);
 
 	// helper functions
+	const cartQuantity = cartItem.reduce(
+		(quantity, item) => item.quantity + quantity,
+		0
+	);
+
+	const openCart = () => setIsOpen(true);
+	const closeCart = () => setIsOpen(false);
 	const getItems = (id: number) => {
 		return cartItem.find((item) => item.id === id)?.quantity || 0;
 	};
@@ -79,7 +93,16 @@ export const ShoppingCartProvider = ({ children }: childrenProps) => {
 
 	return (
 		<ShoppingCartContext.Provider
-			value={{ getItems, addItems, removeItems, deleteItems }}
+			value={{
+				getItems,
+				addItems,
+				removeItems,
+				deleteItems,
+				cartItem,
+				cartQuantity,
+				openCart,
+				closeCart
+			}}
 		>
 			{children}
 		</ShoppingCartContext.Provider>
