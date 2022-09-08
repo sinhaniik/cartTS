@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as CartIcon } from '../../assets/cartIcon.svg';
 import { useShoppingCart } from '../../context/shoppingCartContext';
+import ShoppingCart from '../shopping-cart/shopping-cart.componenet';
 
 import './navbar.styles.scss';
 
 export const Navbar = () => {
-	const { openCart, closeCart, cartQuantity } = useShoppingCart();
+	const { isOpen, togleCart, cartQuantity } = useShoppingCart();
 	return (
 		<div>
 			<div className='navbar'>
@@ -18,9 +19,10 @@ export const Navbar = () => {
 				<NavLink className={'str'} to={'/store'}>
 					STORE
 				</NavLink>
-				<button className='btn' onClick={openCart}>
+				<button className='btn' onClick={togleCart}>
 					<CartIcon className='CI' />
 					<span className='cir'>{cartQuantity}</span>
+					{isOpen && <ShoppingCart />}
 				</button>
 			</div>
 		</div>

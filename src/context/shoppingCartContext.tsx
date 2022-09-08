@@ -1,11 +1,12 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
+import { ShoppingCart } from '../component/shopping-cart/shopping-cart.componenet';
 
 // these are all the function that we wanted
 // to perform certain action
 type ShoppingCartType = {
 	//for opening nd closing cart
-	openCart: () => void;
-	closeCart: () => void;
+	isOpen: boolean;
+	togleCart: () => void;
 	// increse , decrease cart items
 	getItems: (id: number) => number;
 	addItems: (id: number) => void;
@@ -44,8 +45,7 @@ export const ShoppingCartProvider = ({ children }: childrenProps) => {
 		0
 	);
 
-	const openCart = () => setIsOpen(true);
-	const closeCart = () => setIsOpen(false);
+	const togleCart = () => setIsOpen(!isOpen);
 	const getItems = (id: number) => {
 		return cartItem.find((item) => item.id === id)?.quantity || 0;
 	};
@@ -100,8 +100,9 @@ export const ShoppingCartProvider = ({ children }: childrenProps) => {
 				deleteItems,
 				cartItem,
 				cartQuantity,
-				openCart,
-				closeCart
+
+				isOpen,
+				togleCart
 			}}
 		>
 			{children}
